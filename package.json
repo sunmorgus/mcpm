@@ -2,7 +2,7 @@
     "name": "mcpm",
     "version": "1.0.0",
     "description": "A Minecraft mod package manager.",
-    "main": "./src/index.js",
+    "main": "src/index.js",
     "repository": "https://github.com/sunmorgus/mcpm.git",
     "author": "Nick DeMayo <sunmorgus@gmail.com>",
     "license": "MIT",
@@ -17,6 +17,8 @@
         "precommit": "pretty-quick --staged"
     },
     "dependencies": {
+        "adm-zip": "^0.4.7",
+        "archiver": "^2.1.1",
         "chalk": "^2.3.1",
         "clear": "^0.0.1",
         "clui": "^0.3.6",
