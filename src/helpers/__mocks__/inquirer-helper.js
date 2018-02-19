@@ -9,11 +9,9 @@ const answers = {
     dependencies: ['forge']
 };
 
+const mockPrompt = jest.fn(() => Promise.resolve(answers));
+
 module.exports = {
     answers: answers,
-    prompt(questions) {
-        return new Promise(resolve => {
-            process.nextTick(() => resolve(answers));
-        });
-    }
+    prompt: mockPrompt
 };

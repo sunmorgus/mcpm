@@ -4,6 +4,8 @@ var errorCodes = require('../src/globals/error-codes');
 var mockInquirerHelper = require('../src/helpers/__mocks__/inquirer-helper');
 jest.mock('../src/helpers/inquirer-helper');
 
+jest.mock('../src/helpers/fs-helper');
+
 console.log = jest.fn();
 var defaultArgs = ['/usr/local/bin/node', 'index.js'];
 
@@ -31,6 +33,15 @@ describe('MCMP', () => {
             expect.assertions(8);
             return mcpm.getMcpmPackage(defaultArgs).then(response => {
                 expectPackageProps(response, mockInquirerHelper.answers);
+            });
+        });
+        it('writes package structure', () => {
+            expect.assertions(2);
+            return mcpm.getMcpmPackage(defaultArgs).then(response => {
+                expect(response.name).toBe(mockInquirerHelper.answers.name);
+
+                var created = mcpm.writePackage(response);
+                expect(created).toBeTruthy();
             });
         });
     });

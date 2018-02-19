@@ -20,7 +20,9 @@ function run() {
     mcpm
         .getMcpmPackage(process.argv)
         .then(response => {
-            console.log(response);
+            mcpm.writePackage(response);
+
+            console.log(chalk.green('mcpm package structure created!'));
 
             process.exit();
         })

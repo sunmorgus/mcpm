@@ -3,6 +3,7 @@ var chalk = require('chalk');
 
 var errorCodes = require('../globals/error-codes');
 var inquirerHelper = require('../helpers/inquirer-helper');
+var fsHelper = require('../helpers/fs-helper');
 var McpmPackage = require('../models/mcpm-package');
 
 module.exports = {
@@ -42,6 +43,14 @@ module.exports = {
                     });
             }
         });
+    },
+    writePackage(mcpmPackage) {
+        var created = false;
+
+        created = fsHelper.writeFolder('mod');
+        created = fsHelper.writeMcpmPackage(mcpmPackage);
+
+        return created;
     },
     printUsage() {
         // TODO: Print usage
