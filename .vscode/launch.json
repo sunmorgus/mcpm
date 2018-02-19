@@ -9,7 +9,15 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/src/index.js",
-            "args": ["--packagName", "\"first mod\""]
+            "args": ["init"],
+            "console": "externalTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program (no args)",
+            "program": "${workspaceFolder}/src/index.js",
+            "console": "externalTerminal"
         },
         {
             "type": "node",

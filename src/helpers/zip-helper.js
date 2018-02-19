@@ -3,8 +3,8 @@ var path = require('path');
 var Zip = require('adm-zip');
 var archiver = require('archiver');
 
-class PackageRepo {
-    createPackage(packageName, modPath) {
+module.exports = {
+    createZip(packageName, modPath) {
         if (typeof packageName === 'undefined') {
             throw { message: 'PackageName is required' };
         }
@@ -63,7 +63,7 @@ class PackageRepo {
         if (hasFiles) {
             archive.finalize();
         }
-    }
+    },
 
     _addMod(archive, modPath, isDir) {
         if (isDir) {
@@ -74,6 +74,4 @@ class PackageRepo {
             });
         }
     }
-}
-
-module.exports = PackageRepo;
+};
