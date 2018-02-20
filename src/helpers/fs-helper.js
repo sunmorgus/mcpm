@@ -14,6 +14,29 @@ module.exports = {
         return created;
     },
 
+    copyFile(source, destination) {
+        return new Promise((resolve, reject) => {
+            var rs = fs.createReadStream(source);
+
+            rs.on('error', function(error) {
+                reject(error);
+            });
+
+            var destinationFileName = path.basename(source);
+            var ws = fs.createWriteStream(
+                path.join(destination, destinationFileName)
+            );
+
+            ws.on('error', function(error) {
+                reject(error);
+            });
+
+            ws.on('close', function(ex) {
+                resolve(true);
+            });
+        });
+    },
+
     writeMcpmPackage(mcpmPackage) {
         var created = false;
         var dir = path.join(process.cwd(), 'mcpm.json');

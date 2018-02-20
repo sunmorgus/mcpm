@@ -1,5 +1,6 @@
 var minimist = require('minimist');
 var chalk = require('chalk');
+var path = require('path');
 
 var errorCodes = require('../globals/error-codes');
 var inquirerHelper = require('../helpers/inquirer-helper');
@@ -45,12 +46,23 @@ module.exports = {
         });
     },
     writePackage(mcpmPackage) {
-        var created = false;
+        return new Promise((resolve, reject) => {
+            var created = false;
 
-        created = fsHelper.writeFolder('mod');
-        created = fsHelper.writeMcpmPackage(mcpmPackage);
+            created = fsHelper.writeFolder('mod');
+            created = fsHelper.writeMcpmPackage(mcpmPackage);
 
-        return created;
+            fsHelper
+                .copyFile(mcpmPackage.modPath, path.join(process.cwd(), 'mod'))
+                .then(response => {
+                    created = response;
+
+                    resolve(created);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
     },
     printUsage() {
         // TODO: Print usage
