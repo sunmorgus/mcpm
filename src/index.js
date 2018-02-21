@@ -32,7 +32,7 @@ function run() {
                 switch (error.code) {
                     case errorCodes.NoArgs:
                     case errorCodes.InvalidAction:
-                        mcpm.printUsage();
+                        mcpm.printUsageSync();
                         process.exit();
                     default:
                         console.error(e);

@@ -4,7 +4,7 @@ var Zip = require('adm-zip');
 var archiver = require('archiver');
 
 module.exports = {
-    createZip(packageName, modPath) {
+    createZipSync(packageName, modPath) {
         if (typeof packageName === 'undefined') {
             throw { message: 'PackageName is required' };
         }
@@ -56,7 +56,7 @@ module.exports = {
         var hasFiles = false;
 
         if (typeof modPath !== 'undefined') {
-            this._addMod(archive, modPath, stats.isDirectory());
+            this._addModSync(archive, modPath, stats.isDirectory());
             hasFiles = true;
         }
 
@@ -65,7 +65,7 @@ module.exports = {
         }
     },
 
-    _addMod(archive, modPath, isDir) {
+    _addModSync(archive, modPath, isDir) {
         if (isDir) {
             archive.directory(modPath, 'mods');
         } else {

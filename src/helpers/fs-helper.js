@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = {
-    writeFolder(name) {
+    writeFolderSync(name) {
         var created = false;
         var dir = path.join(process.cwd(), name);
 
@@ -37,7 +37,11 @@ module.exports = {
         });
     },
 
-    writeMcpmPackage(mcpmPackage) {
+    existsSync(path) {
+        return fs.existsSync(path);
+    },
+
+    writeMcpmPackageSyncÍ(mcpmPackage) {
         var created = false;
         var dir = path.join(process.cwd(), 'mcpm.json');
         var content = JSON.stringify(mcpmPackage, null, 2);

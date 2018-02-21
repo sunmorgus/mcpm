@@ -5,6 +5,7 @@ var path = require('path');
 var errorCodes = require('../globals/error-codes');
 var inquirerHelper = require('../helpers/inquirer-helper');
 var fsHelper = require('../helpers/fs-helper');
+var zipHelper = require('../helpers/zip-helper');
 var McpmPackage = require('../models/mcpm-package');
 
 module.exports = {
@@ -37,6 +38,8 @@ module.exports = {
                             resolve(mcpmPackage);
                         });
                     break;
+                case 'pack':
+                    break;
                 default:
                     reject({
                         message: 'Invalid action provided',
@@ -49,14 +52,13 @@ module.exports = {
         return new Promise((resolve, reject) => {
             var created = false;
 
-            created = fsHelper.writeFolder('mod');
-            created = fsHelper.writeMcpmPackage(mcpmPackage);
+            created = fsHelper.writeFolderSync('mod');
+            created = fsHelper.writeMcpmPackageSync(mcpmPackage);
 
             fsHelper
                 .copyFile(mcpmPackage.modPath, path.join(process.cwd(), 'mod'))
                 .then(response => {
                     created = response;
-
                     resolve(created);
                 })
                 .catch(error => {
@@ -64,7 +66,7 @@ module.exports = {
                 });
         });
     },
-    printUsage() {
+    printUsageSync() {
         // TODO: Print usage
         console.log(chalk.red('You must specify a command: new, install, etc'));
     }

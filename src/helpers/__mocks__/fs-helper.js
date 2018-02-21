@@ -3,7 +3,7 @@ const mockWriteMcpmPackage = jest.fn().mockReturnValue(true);
 const mockCopyFile = jest.fn(() => Promise.resolve(true));
 
 module.exports = {
-    writeFolder: mockWriteFolder,
-    writeMcpmPackage: mockWriteMcpmPackage,
+    writeFolderSync: mockWriteFolder,
+    writeMcpmPackageSync: mockWriteMcpmPackage,
     copyFile: mockCopyFile
 };

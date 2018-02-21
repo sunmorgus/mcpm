@@ -2,7 +2,7 @@ export const mockCreateZip = jest.fn();
 
 const ZipHelper = jest.fn().mockImplementation(() => {
     return {
-        createZip: mockCreateZip
+        createZipSync: mockCreateZip
     };
 });
 
