@@ -1,0 +1,40 @@
+{
+    "name": "mcpm",
+    "version": "1.0.0",
+    "description": "A Minecraft mod package manager.",
+    "main": "src/index.js",
+    "repository": "https://github.com/sunmorgus/mcpm.git",
+    "author": "Nick DeMayo <sunmorgus@gmail.com>",
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+        "husky": "^0.14.3",
+        "jest": "^22.3.0",
+        "pkg": "^4.3.0",
+        "prettier": "^1.10.2",
+        "pretty-quick": "^1.4.1"
+    },
+    "jest": {
+        "verbose": true
+    },
+    "scripts": {
+        "test": "jest",
+        "precommit": "pretty-quick --staged",
+        "build": "pkg package.json --out-path ./dist"
+    },
+    "dependencies": {
+        "adm-zip": "^0.4.7",
+        "archiver": "^2.1.1",
+        "chalk": "^2.3.1",
+        "clear": "^0.0.1",
+        "clui": "^0.3.6",
+        "figlet": "^1.2.0",
+        "inquirer": "^5.1.0",
+        "inquirer-path": "^1.0.0-beta5",
+        "minimist": "^1.2.0"
+    },
+    "pkg": {
+        "assets": "node_modules/figlet/fonts/Standard.flf"
+    },
+    "bin": "./src/index.js"
+}
