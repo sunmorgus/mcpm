@@ -31,7 +31,7 @@
         "figlet": "^1.2.0",
         "inquirer": "^5.1.0",
         "inquirer-path": "^1.0.0-beta5",
-        "minimist": "^1.2.0"
+        "minimist": "^1.2.6"
     },
     "pkg": {
         "assets": "node_modules/figlet/fonts/Standard.flf"
